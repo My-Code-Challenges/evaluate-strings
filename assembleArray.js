@@ -12,7 +12,10 @@ function assembleArray(arr) {
             console.log(el);
             globalArray = [...globalArray, ...el];
         }
-        if (el.match(operatorRegex)) {
+        if (el.match(operatorRegex)
+        || el ==="*"
+        && arr[i-1] !=="*"
+        && arr[i+1] !=="*") {
             globalArray = [...globalArray, ...el];
         };
         if (el === "*"
