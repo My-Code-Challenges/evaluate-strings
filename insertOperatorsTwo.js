@@ -20,12 +20,20 @@ function insertOperators(charArray, numArray) {
         || charArray[i] ==="*"
         && charArray[i-1] !=="*"
         && charArray[i+1] !=="*") {
+
+            /*
+            charArray = ["2", "-", "1", "+", "3"]
+            numArray = ["2", "1", "3"]
+            */
+
             specialOperator = charArray.slice(i, i+1);
+            console.log(specialOperator);
             operatorCount--;
             console.log(i);
+            console.log(operatorCount + i);
+            console.log(charArray[i], 'match at', i);
             numArray.splice(operatorCount, 0, ...specialOperator);
             
-            console.log('match at', i);
             console.log(operatorCount);
             console.log(numArray);
         }
@@ -51,7 +59,8 @@ function insertOperators(charArray, numArray) {
 // insertOperators(["1", "1", "+", "6"], ["11", "6"]); ✅
 // insertOperators(["1","2", "-", "3"], ["12", "3"]); ✅
 // insertOperators(["6","0", "/", "3"], ["60", "3"]); ✅
-// insertOperators(["5","1", "*", "2"], ["51", "2"]); ✅
+insertOperators(["5","1", "*", "2"], ["51", "2"]);
 // insertOperators(["2", "*", "*", "3"], ["2", "3"]) ✅
-// insertOperators(["2", "*", "*", "3", "+", "5"], ["2", "3", "5"]) ✅
+// insertOperators(["2", "*", "*", "3", "+", "5"], ["2", "3", "5"])
+// insertOperators(["2", "-", "1", "+", "3"],["2", "1", "3"])
 // insertOperators(["2", "*", "*", "3", "+", "5", "-", "2"], ["2", "3", "5", "2"])
