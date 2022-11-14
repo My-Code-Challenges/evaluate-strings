@@ -1,39 +1,49 @@
+export default function assemble(arr) {
 
-function assembleArray(arr) {
-    let globalArray = [];
-
-    let exponent;
-
-    let numberRegex = /\d+/;
-    let operatorRegex = /\+|\-|\//;
+    let operatorRegex = /\(|\)|\*|\+|\-|\//g;
+    let count = 0;
+    let operatorBoolean = false;
+    let newArr = [];
+    let newNum = '';
     
-    arr.map((el, i) => {
-        if(el.match(numberRegex)){
-            console.log(el);
-            globalArray = [...globalArray, ...el];
+    for (let i=0; i <= arr.length - 1; i++) {
+        if (arr[i].match(operatorRegex)) {
+          if ( operatorBoolean ) {
+                        // previous character was also an operator
+                        // is the prev char identical to this one?
+                        if ( arr[i-1] == arr[i] ) {
+                        newNum += arr[i];
+                        } else {
+                        // save the previous operator before saving this one
+                        newArr[count] = newNum;
+                        newNum = arr[i];
+                        count++;
+                        }
+          } else {
+            // save the newNum so far before inc count
+            newArr[count] = newNum;
+            newNum = arr[i];
+            count++;
+          }
+          operatorBoolean = true;
+        } 
+        else {
+          if (operatorBoolean) {
+            // previous char was operator so save it before inc count
+            newArr[count] = newNum;
+            newNum = arr[i];
+            count++;
+          } else {
+            // previous char was a digit so continue to append
+            newNum += arr[i];
+          }
+          operatorBoolean = false;
         }
-        if (el.match(operatorRegex)
-        || el ==="*"
-        && arr[i-1] !=="*"
-        && arr[i+1] !=="*") {
-            globalArray = [...globalArray, ...el];
-        };
-        if (el === "*"
-        && el[i-1] === "*") {
-            console.log('still recorded');
-            exponent = arr.slice(i, i+2).join('');
-            globalArray = [...globalArray, exponent]
-
-        }
-    })
-    return globalArray;
+      }
+      // save the last found number
+    newArr[count] = newNum;
+      return newArr
 }
 
-// insertOperators(["1", "1", "+", "6"], ["11", "6"]); ✅
-// insertOperators(["1","2", "-", "3"], ["12", "3"]); ✅
-// insertOperators(["6","0", "/", "3"], ["60", "3"]); ✅
-assembleArray(["5","1", "*", "2"], ["51", "2"]);
-// insertOperators(["2", "*", "*", "3"], ["2", "3"]) ✅
-// insertOperators(["2", "*", "*", "3", "+", "5"], ["2", "3", "5"])
-assembleArray(["2", "-", "1", "+", "3"],["2", "1", "3"]);
-assembleArray(["2", "*", "*", "3", "+", "5", "-", "2"], ["2", "3", "5", "2"])
+
+console.log(assemble(['1','+','(','2',')','/','3','*','*','4','4','4','-', "2"]));

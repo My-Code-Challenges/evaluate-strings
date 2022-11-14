@@ -24,7 +24,7 @@ The method used to solve this challenge should not be used in practice. However,
 
 [Here is a useful Stack Overflow method used to tackle this problem](https://stackoverflow.com/a/13077966/15592981)
 
-```
+```js
 var math_it_up = {
     '+': function (x, y) { return x + y },
     '-': function (x, y) { return x - y }
@@ -34,3 +34,19 @@ math_it_up['+'](1, 2) == 3;
 ```
 
 Click the link for the discussion on how to [split a string into sets of 2](https://stackoverflow.com/a/53896618/15592981)
+
+```js
+function evaluate(stringEquation) {
+    // baseline variables
+
+    // convert string to array
+
+    // Assemble Array
+
+    // Find Parenthesis and slice value to new array
+
+    // Use mathKey object to solve parenthesis expression [...arr, "(1+2)"] should be replaced by [...arr, 3]
+
+    // remember PEDMAS
+}
+```
