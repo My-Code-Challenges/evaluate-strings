@@ -4,9 +4,8 @@ Find the contents between the two parenthesis and generate a new string with it'
 */
 
 export default function findParenthesis(arr) {
-    console.log(arr);
     let parenthesisExpression = [];
-    return arr.forEach((element, index) => {
+    arr.forEach((element, index, arr) => {
         if(element === "(") {
             let openingParenthesis = index;
             let closingParenthesis = arr.findIndex((el) => el === ")")
@@ -15,9 +14,6 @@ export default function findParenthesis(arr) {
         else {
             return
         }
-        console.log(parenthesisExpression);
-        return parenthesisExpression;
     });
+    return parenthesisExpression
 }
-
-findParenthesis([ '11', '+', '(', '2', '+', '5', ')', '/', '3', '**', '4', '-', '2' ])

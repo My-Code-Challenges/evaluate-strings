@@ -1,0 +1,8 @@
+left to right
+signify as level 1
+
+Keep track of nesting levels
+
+close count could be renamed level
+
+subtract open count from level
